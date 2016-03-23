@@ -48,6 +48,11 @@
                     </webApp>
                 </configuration>
             </plugin>
+            <plugin>
+              <groupId>org.eclipse.jetty</groupId>
+              <artifactId>jetty-maven-plugin</artifactId>
+              <version>9.3.0.M1</version>
+            </plugin>
         </plugins>
     </build>
 
