@@ -14,17 +14,16 @@ public class VoeuMapper implements ResultSetMapper<Voeu>
 		User user = new User();
 		FormaEtabl fe = new FormaEtabl();
 		
-		user.setLogin(login);
-		user.setName(name);
-		user.setPrenom(prenom);
-		user.setPassword(password);
+		user.setLogin(r.getString("login"));
+		user.setName(r.getString("nom"));
+		user.setPrenom(r.getString("prenom"));
 		
-		fe.setDiplome(diplome);
-		fe.setDomaine(domaine);
-		fe.setEtaId(etaId);
-		fe.setFormaId(formaId);
-		fe.setNom(nom); //de l'établissement
-		fe.setVille(ville);
+		fe.setDiplome(r.getString("diplome"));
+		fe.setDomaine(r.getString("domaine"));
+		fe.setEtaId(r.getInt("eno"));
+		fe.setFormaId(r.getInt("fno"));
+		fe.setNom(r.getString("etablissement")); //de l'établissement
+		fe.setVille(r.getString("ville"));
 		
 		
 		res.setFormaEtabl(fe);
