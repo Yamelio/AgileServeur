@@ -26,7 +26,7 @@ public class AppSecurityContext implements SecurityContext {
     public boolean isUserInRole(String s) {
         logger.debug("isUserInRole called for : "+ s);
         if ("user".equals(s)){
-            return user.getRole();
+            return user.getRole().equals("user");
         }
             return true;
 
