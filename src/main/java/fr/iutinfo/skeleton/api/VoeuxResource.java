@@ -30,6 +30,7 @@ public class VoeuxResource {
     	return dao.getVoeuxByLogin(login);    	 
     }
 
+    /*
     @PUT
     public boolean addVoeuTo(String login, Voeu voeu) {
         return dao.addVoeuTo(login,voeu);
@@ -40,5 +41,5 @@ public class VoeuxResource {
     public Voeu removeVoeuTo(String login,Voeu voeu) {
         return dao.removeVoeuTo(login,voeu);
     }
-
+	*/
 }
