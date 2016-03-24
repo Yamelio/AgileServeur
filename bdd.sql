@@ -46,11 +46,28 @@ CREATE TABLE etablissement(
 	CONSTRAINT pk_eno PRIMARY KEY(eno)
 );
 
+CREATE TABLE formEtabl(
+	fno Integer,
+	eno Integer,
+	feno serial,
+	CONSTRAINT fk_fno FOREIGN KEY(fno) REFERENCES formation(fno),
+	CONSTRAINT fk_eno FOREIGN KEY(eno) REFERENCES etablissement(eno),
+	CONSTRAINT pk_feno PRIMARY KEY(feno)
+);
+
 CREATE TABLE voeux (
 	login text,
-	fno integer,
+	feno integer,
 	CONSTRAINT fk_login FOREIGN KEY(login) REFERENCES utilisateur(login),
-	CONSTRAINT fk_fno FOREIGN KEY(fno) REFERENCES formation(fno),
-	CONSTRAINT pk_vno PRIMARY KEY(login,fno)
+	CONSTRAINT fk_feno FOREIGN KEY(feno) REFERENCES formEtabl(feno),
+	CONSTRAINT pk_vno PRIMARY KEY(login,feno)
 );
+
+--Select voeux par login
+select u.login,u.prenom,u.nom,f.diplome,f.domaine,e.eno,f.fno,e.nom,e.ville
+from utilisateur as u,formation as f,etablissement as e, voeux as v, formEtabl as fe
+where u.login=v.login and v.feno=fe.feno and fe.fno=f.fno and fe.eno=e.eno;
+
+
+
 	
