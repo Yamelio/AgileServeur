@@ -17,6 +17,7 @@ public class VoeuMapper implements ResultSetMapper<Voeu>
 		user.setLogin(r.getString("login"));
 		user.setName(r.getString("nom"));
 		user.setPrenom(r.getString("prenom"));
+		user.setRole(r.getString("role"));
 		
 		fe.setDiplome(r.getString("diplome"));
 		fe.setDomaine(r.getString("domaine"));

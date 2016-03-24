@@ -64,9 +64,9 @@ CREATE TABLE voeux (
 );
 
 --Select voeux par login
-select u.login,u.prenom,u.nom,f.diplome,f.domaine,e.eno,f.fno,e.nom,e.ville
+select u.login,u.prenom,u.nom,t.lib,f.diplome,f.domaine,e.eno,f.fno,e.nom,e.ville
 from utilisateur as u,formation as f,etablissement as e, voeux as v, formEtabl as fe
-where u.login=v.login and v.feno=fe.feno and fe.fno=f.fno and fe.eno=e.eno;
+where u.login=v.login and v.feno=fe.feno and fe.fno=f.fno and fe.eno=e.eno and t.tno=u.type;
 
 
 

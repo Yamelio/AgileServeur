@@ -18,6 +18,7 @@ public class User implements Principal {
     private String password;
     private String passwdHash;
     private String salt;
+    private String role;
 
     private static User anonymous = new User("Anonymous", "anonym","anne.onymous");
 
@@ -131,4 +132,14 @@ public class User implements Principal {
     public static boolean isAnonymous(User currentUser) {
         return currentUser.getLogin() == getAnonymousUser().getLogin();
     }
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+    
+    
 }

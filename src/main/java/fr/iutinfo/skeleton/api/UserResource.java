@@ -19,24 +19,7 @@ public class UserResource {
     private static Map<Integer, User> users = new HashMap<>();
     Logger logger = LoggerFactory.getLogger(UserResource.class);
 
-    @POST
-
-    public User createUser(User user) {
-        int id = users.size();
-        user.setId(id + 1);
-        users.put(user.getId(), user);
-        return user;
-    }
-
-    @DELETE
-    @Path("{id}")
-    public Response deleteUser(@PathParam("id") Integer id) {
-        if (users.containsKey(id)) {
-            return Response.accepted().status(Status.ACCEPTED).build();
-        }
-        return Response.accepted().status(Status.NOT_FOUND).build();
-    }
-
+   
     protected User find(String name) {
         for (User user : users.values()) {
             if (user.getName().equals(name)) {
