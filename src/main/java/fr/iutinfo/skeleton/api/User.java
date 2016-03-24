@@ -15,34 +15,23 @@ public class User implements Principal {
     private String nom;
     private String prenom;
     private String login;
-    private int id = 0;
     private String password;
     private String passwdHash;
     private String salt;
 
-    private static User anonymous = new User(-1, "Anonymous", "anonym","anne.onymous");
+    private static User anonymous = new User("Anonymous", "anonym","anne.onymous");
 
-    public User(int id, String name) {
-        this.id = id;
-        this.nom = name;
+    public User(String login) {
+        this.login=login;
     }
 
-    public User(int id, String name, String prenom, String login) {
-        this.id = id;
+    public User(String name, String prenom, String login) {
         this.nom = name;
         this.prenom = prenom;
         this.login=login;
     }
 
     public User() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -100,7 +89,7 @@ public class User implements Principal {
 
     @Override
     public String toString() {
-        return id + ": " + prenom + ", " + nom ;
+        return login + ": " + prenom + ", " + nom ;
     }
 
     public String getPrenom() {
@@ -135,15 +124,11 @@ public class User implements Principal {
         }
     }
 
-    public boolean isInUserGroup(){
-        return ! (id == anonymous.getId());
-    }
-
     public static User getAnonymousUser() {
         return anonymous ;
     }
 
     public static boolean isAnonymous(User currentUser) {
-        return currentUser.getId() == getAnonymousUser().getId();
+        return currentUser.getLogin() == getAnonymousUser().getLogin();
     }
 }

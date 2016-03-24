@@ -9,6 +9,8 @@ public class FormaEtabl {
 	private String ville;
 	private String nom;
 	
+	public FormaEtabl(){};
+	
 	public int getFormaId() {
 		return formaId;
 	}

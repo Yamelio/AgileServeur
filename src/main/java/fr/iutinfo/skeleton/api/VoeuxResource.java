@@ -27,20 +27,18 @@ public class VoeuxResource {
 
     @GET
     public List<Voeu> getVoeux(String login) {
-    	//dao.getVoeuxByLogin(login);
-    	return null;
+    	return dao.getVoeuxByLogin(login);    	 
     }
 
     @PUT
     public boolean addVoeuTo(String login, Voeu voeu) {
-        //dao.addVoeuTo(login,voeu);
-        return false;
+        return dao.addVoeuTo(login,voeu);
+        
     }
 
     @DELETE
     public Voeu removeVoeuTo(String login,Voeu voeu) {
-        //dao.removeVoeuTo(login,voeu);
-    	return null;
+        return dao.removeVoeuTo(login,voeu);
     }
 
 }

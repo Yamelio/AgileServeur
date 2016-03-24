@@ -1,9 +1,15 @@
 package fr.iutinfo.skeleton.api;
 
+
 public class Voeu {
 
 	private User user;
 	private FormaEtabl formaEtabl;
+	
+	public Voeu(){};
+	public Voeu(User user,FormaEtabl formaEtabl){
+		
+	}
 	
 	public User getUser() {
 		return user;
@@ -21,7 +27,5 @@ public class Voeu {
 	public String toString() {
 		return "Voeu [user=" + user + ", formaEtabl=" + formaEtabl + "]";
 	}
-	
-	
-	
+		
 }

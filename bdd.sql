@@ -17,13 +17,12 @@ INSERT INTO type (lib) VALUES('jury');
 
 
 CREATE TABLE utilisateur(
-	uno SERIAL,
+	login TEXT,
 	prenom TEXT,
 	nom TEXT,
-	login TEXT,
 	password TEXT,
 	type INTEGER,
-	CONSTRAINT pk_uno PRIMARY KEY(uno),
+	CONSTRAINT pk_login PRIMARY KEY(login),
 	CONSTRAINT fk_type FOREIGN KEY(type) REFERENCES type(tno)
 );
 -- Types : 0 = admin , 1 = etudiant , 2  = secretaire , 3 = Jury
@@ -48,11 +47,10 @@ CREATE TABLE etablissement(
 );
 
 CREATE TABLE voeux (
-	uno integer,
+	login text,
 	fno integer,
-	numero_voeu integer,
-	CONSTRAINT fk_uno FOREIGN KEY(uno) REFERENCES utilisateur(uno),
+	CONSTRAINT fk_login FOREIGN KEY(login) REFERENCES utilisateur(login),
 	CONSTRAINT fk_fno FOREIGN KEY(fno) REFERENCES formation(fno),
-	CONSTRAINT pk_vno PRIMARY KEY(uno,fno)
+	CONSTRAINT pk_vno PRIMARY KEY(login,fno)
 );
 	
