@@ -5,5 +5,6 @@ public class ListeFormation {
 	String domaine;
 	String ecole;
 	String ville;
+	int feno;
 	
 }

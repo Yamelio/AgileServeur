@@ -14,6 +14,7 @@ public class ListeFormMapper implements ResultSetMapper<ListeFormation>
 		res.ville=r.getString("ville");
 		res.ecole=r.getString("ecole");
 		res.domaine=r.getString("domaine");
+		res.feno=r.getInt("feno");
 	    return res;
 	  }
 	}
