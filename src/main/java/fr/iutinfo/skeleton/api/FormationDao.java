@@ -8,8 +8,9 @@ import java.util.List;
 public interface FormationDao {
 	
 	
-	@SqlQuery("select lib from diplome;")
-	List<String>getDiplomes();
+	@SqlQuery("select * from diplome;")
+	@RegisterMapper(DiplomeMapper.class)
+	List<Diplome>getDiplomes();
 	
 	
 	@SqlUpdate("")

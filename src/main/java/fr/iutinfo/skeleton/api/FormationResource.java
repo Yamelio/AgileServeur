@@ -1,6 +1,10 @@
 package fr.iutinfo.skeleton.api;
 
 import fr.iutinfo.skeleton.auth.AuthFilter;
+
+import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
+import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapperFactory;
+import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,6 +34,7 @@ import javax.ws.rs.core.SecurityContext;
 @Consumes(MediaType.APPLICATION_JSON)
 public class FormationResource {
 
+	
 	private static FormationDao dao = BDDFactory.getDbi().open(FormationDao.class);
 	final static Logger logger = LoggerFactory.getLogger(SecureResource.class);
 	Gson gson = new Gson();
@@ -37,7 +42,7 @@ public class FormationResource {
 	@GET
 	@Path("/diplome")
 	public Response getDiplomes() {
-		List<String> reponse = dao.getDiplomes();
+		List<Diplome> reponse = dao.getDiplomes();
 		return Response.status(200).entity(gson.toJson(reponse)).build();
 
 	}
