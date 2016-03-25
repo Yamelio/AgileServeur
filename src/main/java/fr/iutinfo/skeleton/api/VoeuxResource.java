@@ -17,6 +17,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
@@ -41,12 +42,13 @@ public class VoeuxResource {
 
 	}
 
+	@PUT
+	public Response addVoeuTo(@QueryParam("login") String login,@QueryParam("feno") int feno) {
+		logger.debug("Login : " + login + ", feno : " + feno);
+		dao.addVoeuTo(login, feno);
+		return Response.status(200).entity(gson.toJson(login)).build();
+	}
 	/*
-	 * @PUT public boolean addVoeuTo(String login, Voeu voeu) { return
-	 * dao.addVoeuTo(login,voeu);
-	 * 
-	 * }
-	 * 
 	 * @DELETE public Voeu removeVoeuTo(String login,Voeu voeu) { return
 	 * dao.removeVoeuTo(login,voeu); }
 	 */

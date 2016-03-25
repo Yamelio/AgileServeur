@@ -6,6 +6,8 @@ import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
 
 import java.util.List;
 
+import javax.ws.rs.QueryParam;
+
 public interface VoeuxDao {
 	
 	
@@ -16,8 +18,8 @@ public interface VoeuxDao {
 	List<Voeu>getVoeuxByLogin(@Bind("login") String login);
 	
 	
-	@SqlUpdate("insert into voeux values(':login',:feno);")
-	void addVoeuTo(String login,@BindVoeu() Voeu voeu);
+	@SqlUpdate("insert into voeux values(:login, :feno );")
+	void addVoeuTo(@Bind("login") String login, @Bind("feno") int feno);
 	
 	/*
 	@SqlQuery("")
