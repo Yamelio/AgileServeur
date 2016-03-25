@@ -4,7 +4,8 @@ public class Etudiant {
 
 	String nom;
 	String prenom;
-	String motdepasse;
+	String login;
+	int hasVoeu;
 	
 	
 }
