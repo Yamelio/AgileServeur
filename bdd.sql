@@ -1,19 +1,33 @@
 -- psql -h psqlserv -U post_iut_user post_iut
 
+DROP TABLE if exists formetabl CASCADE;
 DROP TABLE if exists utilisateur CASCADE;
 DROP TABLE if exists type CASCADE;
 DROP TABLE if exists formation CASCADE;
 DROP TABLE if exists etablissement CASCADE;
+DROP TABLE if exists type CASCADE;
+DROP TABLE if exists diplome CASCADE;
 
 CREATE TABLE type(
 	tno SERIAL,
 	lib TEXT,
 	CONSTRAINT pk_tno PRIMARY KEY(tno)
 );
+
+CREATE TABLE diplome(
+	dno SERIAL,
+	lib TEXT,
+	CONSTRAINT pk_dno PRIMARY KEY(dno)
+);
+
 INSERT INTO type (lib) VALUES('admin');
 INSERT INTO type (lib) VALUES('etudiant');
 INSERT INTO type (lib) VALUES('secretaire');
 INSERT INTO type (lib) VALUES('jury');
+
+INSERT INTO diplome (lib) VALUES('Licence Pro');
+INSERT INTO diplome (lib) VALUES('Licence');
+INSERT INTO diplome (lib) VALUES('Ingenieur');
 
 
 CREATE TABLE utilisateur(
@@ -25,7 +39,7 @@ CREATE TABLE utilisateur(
 	CONSTRAINT pk_login PRIMARY KEY(login),
 	CONSTRAINT fk_type FOREIGN KEY(type) REFERENCES type(tno)
 );
--- Types : 0 = admin , 1 = etudiant , 2  = secretaire , 3 = Jury
+
 INSERT INTO utilisateur (prenom,nom,login,password,type) VALUES('Omar','Al yasini','omar.al-yasini','omaromar','1');
 INSERT INTO utilisateur (prenom,nom,login,password,type) VALUES('Guillaume','Kleinpoort','guillaume.kleinpoort','guillaume','1');
 INSERT INTO utilisateur (prenom,nom,login,password,type) VALUES('aaaa','aaaa','aaaa.aaaa','aaaa','2');
@@ -35,8 +49,9 @@ INSERT INTO utilisateur (prenom,nom,login,password,type) VALUES('bbbb','bbbb','b
 CREATE TABLE formation(
 	fno SERIAL,
 	domaine TEXT,
-	diplome TEXT,
-	CONSTRAINT pk_fno PRIMARY KEY(fno)
+	diplome Integer,
+	CONSTRAINT pk_fno PRIMARY KEY(fno),
+	CONSTRAINT fk_diplome FOREIGN KEY(diplome) REFERENCES diplome(dno)
 );
 	
 CREATE TABLE etablissement(

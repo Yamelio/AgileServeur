@@ -25,24 +25,24 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
 
-@Path("/voeux")
+@Path("/formation")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class VoeuxResource {
+public class FormationResource {
 
-	private static VoeuxDao dao = BDDFactory.getDbi().open(VoeuxDao.class);
+	private static FormationDao dao = BDDFactory.getDbi().open(FormationDao.class);
 	final static Logger logger = LoggerFactory.getLogger(SecureResource.class);
 	Gson gson = new Gson();
 
 	@GET
-	@Path("{login}")
-	public Response getVoeux(@PathParam("login") String login) {
-		List<Voeu> reponse = dao.getVoeuxByLogin(login);
+	@Path("/diplome")
+	public Response getDiplomes() {
+		List<String> reponse = dao.getDiplomes();
 		return Response.status(200).entity(gson.toJson(reponse)).build();
 
 	}
 
-	@PUT
+	@GET
 	public Response addVoeuTo(@QueryParam("login") String login,@QueryParam("feno") int feno) {
 		dao.addVoeuTo(login, feno);
 		return Response.status(200).entity(gson.toJson(login)).build();
