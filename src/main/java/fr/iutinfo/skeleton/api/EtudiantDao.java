@@ -11,17 +11,15 @@ import javax.ws.rs.QueryParam;
 public interface EtudiantDao {
 	
 	
-	@SqlQuery("select prenom,nom,login,CASE WHEN login in (select login from voeux) then 1 else 0 end from utilisateur as u, type as t where u.type=t.tno and t.lib='etudiant';")
+	@SqlQuery("select prenom,nom,login,CASE WHEN login in (select login from voeux) then 1 else 0 end from utilisateur as u, type as t where u.type=t.tno and t.lib='etudiant' order by login asc;")
 	@RegisterMapper(EtudiantMapper.class)
 	List<Etudiant>getEtudiants();
 	
 	
-	@SqlUpdate("insert into voeux values(:login, :feno );")
-	void addVoeuTo(@Bind("login") String login, @Bind("feno") int feno);
+	@SqlQuery("select prenom,nom,login,CASE WHEN login in (select login from voeux) then 1 else 0 end from utilisateur as u, type as t where u.type=t.tno and t.lib='etudiant' and login=:login;")
+	@RegisterMapper(EtudiantMapper.class)
+	Etudiant getEtudiantByLogin(@Bind("login")String login);
 	
-	
-	@SqlUpdate("delete from voeux where login=:login and feno=:feno;")
-	void removeVoeuTo(@Bind("login")String login,@Bind("feno")int feno);
 	
 	
 	void close();

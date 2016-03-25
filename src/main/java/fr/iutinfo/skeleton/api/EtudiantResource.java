@@ -38,6 +38,12 @@ public class EtudiantResource {
 	public Response getEtudiants() {
 		List<Etudiant> reponse = dao.getEtudiants();
 		return Response.status(200).entity(gson.toJson(reponse)).build();
-
+	}
+	
+	@GET
+	@Path("{login}")
+	public Response getEtudiantByLogin(@PathParam("login") String login) {
+		Etudiant reponse = dao.getEtudiantByLogin(login);
+		return Response.status(200).entity(gson.toJson(reponse)).build();
 	}
 }
