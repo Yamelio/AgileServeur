@@ -11,7 +11,7 @@
 
   <script>
   var api="http://localhost:8080/micheline/"
-    var login = "samantha.n-goutane";
+    var login = "guillaume.kleinpoort";
     var bienvenue = $("<p>Connecté en tant que "+ login+"</p>");
     var voeux = "<ul class=\"list-group\">";
     var tmp="";
@@ -39,16 +39,15 @@
     }
   }
 
-  var contenu = "<table class=\"table table-striped\"><thead><tr><th>Ecole</th><th>Formation</th><th>Site</th><th>Lieu</th><th>Choisir</th></tr></thead><tbody>";
-  contenu+= "<tr class=\"info\"><td>IUT A</td><td>Licence Pro DA2I</td><td><a href=\"https://da2i.univ-lille1.fr/\">DA2I</a></td><td>Lille</td><td><input type=submit id=1 onclick=\"addVoeux(this.id)\" value=\"Ajouter\"></td></tr>"
-  contenu+= "<tr><td>IUT A</td><td>Licence Pro CGIR</td><td><a href=\"https://www-iut.univ-lille1.fr/?aff=ID5&titre=Licences%20Pros&titre2=LP-INFORMATIQUE&loc=licences_professionnelles_info/\">CGIR</a></td><td>Lille</td><td><input type=submit id=2 onclick=\"addVoeux(this.id)\" value=\"Ajouter\"></td></tr>"
-  contenu+= "<tr class=\"info\"><td>IUT A</td><td>Licence Pro IRI</td><td><a href=\"https://www-iut.univ-lille1.fr/?aff=ID5&titre=Licences%20Pros&titre2=LP-GEII&loc=licences_professionnelles_geii\">IRI</a></td><td>Lille</td><td><input type=submit id=3 onclick=\"addVoeux(this.id)\" value=\"Ajouter\"></td></tr>"
-     contenu+="</tbody></table>";
-
+  var contenu = "<table class=\"table table-striped\"><thead><tr><th>Ecole</th><th>Formation</th><th>Lieu</th><th>Choisir</th></tr></thead><tbody>";
+  contenu+= "<tr class=\"info\"><td>IUT A</td><td>Licence Pro DA2I</td><<td>Lille</td><td><input type=submit id=1 onclick=\"addVoeux(this.id)\" value=\"Ajouter\"></td></tr>"
+  
 
 $(document).ready(function() {
   // Mettre ici les gestionnaires d'évènements pour les différents boutons
   bienvenue.appendTo('#nom_user');
+   $('#type_form').hide();
+   $('#mes_formation').hide();
 
   $('#ok_type').click(function (event) {
     $('#output').empty();
@@ -71,7 +70,8 @@ $(document).ready(function() {
      $('#faire_1').click(function (event) {
          $('#mes_formation').hide();
           $('#choix_formation').show();
-          
+          $('#type_form').show();
+
 
      });
 
@@ -84,7 +84,8 @@ $(document).ready(function() {
     $('#faire_2').click(function (event) {
          $('#mes_formation').hide();
           $('#choix_formation').show();
-          
+          $('#type_form').show();
+
 
      });
 
@@ -95,8 +96,8 @@ $(document).ready(function() {
      });
 
     // pour démarrer sur la page de choix
-  $('#faire_1').trigger('click');
-  $('#faire_2').trigger('click');
+  //$('#faire_1').trigger('click');
+  //$('#faire_2').trigger('click');
 
  
  $('#voeux_1').click(function (event) {
@@ -109,7 +110,7 @@ $(document).ready(function() {
       var liste="";
 
       for(var i in json){
-        liste+="<li class=\"list-group-item\">"+json[i].formaEtabl.diplome+" - "+json[i].formaEtabl.ville+"</li>";
+        liste+="<li class=\"list-group-item\">"+json[i].formaEtabl.diplome+ " " +json[i].formaEtabl.domaine+" - " + json[i].formaEtabl.nom + " " +json[i].formaEtabl.ville+"</li>";
       }
       //console.log(liste);
     document.getElementById("liste").innerHTML = liste;
@@ -132,18 +133,17 @@ $(document).ready(function() {
 // Attente de lar equete diplome 
  $('#faire_1').click(function (event) {
    $.ajax({
-    url: api+"/diplome",
+    url: api+"formation/diplome/",
     type: "GET",
     dataType : "json",
 
     success: function( json ) {
       var option="";
-
       for(var i in json){
-        option+="<OPTION>"+json[i].formaEtabl.diplome+"</OPTION>";
+        option+="<OPTION>"+json[i].lib+"</OPTION>";
       }
-      //console.log(liste);
-    document.getElementById("liste").innerHTML = liste;
+      console.log(option);
+    document.getElementById("diplome").innerHTML = option;
       
     },
     
@@ -165,18 +165,24 @@ $(document).ready(function() {
   var diplome = $('#diplome').val();
 
    $.ajax({
-    url: api+"/formation/"+diplome,
+    url: api+"formation/"+diplome,
     type: "GET",
     dataType : "json",
 
     success: function( json ) {
-      var option="";
-
+      var cpt = 0;
       for(var i in json){
-        option+="<OPTION>"+json[i].formaEtabl.diplome+"</OPTION>";
+        if(cpt%2 === 0){
+           contenu+= "<tr class=\"info\">";
+        }
+        else{
+
+        }
+        ctp++;
       }
+      contenu+="</table>";
       //console.log(liste);
-    document.getElementById("liste").innerHTML = liste;
+    document.getElementById("output").innerHTML = contenu;
       
     },
     
@@ -214,11 +220,9 @@ $(document).ready(function() {
      
         <FORM>
           <div id="type_form">
-            <label>Filiere - </label>
+            <label>Diplôme - </label>
             <SELECT name="diplome" class="span2" id="diplome" size="1">
-              <OPTION>Licence Pro</OPTION>
-              <OPTION>Licence</OPTION>
-              <OPTION>Ecole d'ingénieur</OPTION>
+             
             </SELECT>
             <input id='ok_type' type='button' class="btn" name = 'submit' value="OK">
           </div>
@@ -238,13 +242,6 @@ $(document).ready(function() {
 
       </div>  
     </div>
-
-
-   
-      
-
-     
-   
 
   </center>
 
