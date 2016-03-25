@@ -21,11 +21,10 @@ public interface VoeuxDao {
 	@SqlUpdate("insert into voeux values(:login, :feno );")
 	void addVoeuTo(@Bind("login") String login, @Bind("feno") int feno);
 	
-	/*
-	@SqlQuery("")
-	@RegisterMapper(VoeuMapper.class)
-	void removeVoeuTo(String login,Voeu voeu);
-	*/
+	
+	@SqlUpdate("delete from voeux where login=:login and feno=:feno;")
+	void removeVoeuTo(@Bind("login")String login,@Bind("feno")int feno);
+	
 	
 	void close();
 }

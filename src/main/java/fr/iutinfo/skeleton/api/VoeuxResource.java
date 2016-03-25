@@ -47,8 +47,10 @@ public class VoeuxResource {
 		dao.addVoeuTo(login, feno);
 		return Response.status(200).entity(gson.toJson(login)).build();
 	}
-	/*
-	 * @DELETE public Voeu removeVoeuTo(String login,Voeu voeu) { return
-	 * dao.removeVoeuTo(login,voeu); }
-	 */
+	
+	 @DELETE public Response removeVoeuTo(@QueryParam("login") String login,@QueryParam("feno") int feno) {
+		 dao.removeVoeuTo(login,feno);
+		 return Response.status(200).entity("Ok").build();
+	}
+	
 }
