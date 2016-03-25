@@ -13,8 +13,9 @@ public interface FormationDao {
 	List<Diplome>getDiplomes();
 	
 	
-	@SqlUpdate("")
-	void addVoeuTo(@Bind("login") String login, @Bind("feno") int feno);
+	@SqlQuery("select f.domaine, e.nom as ecole, e.ville from formetabl as fe, formation as f, diplome as d, etablissement as e where fe.fno=f.fno and f.diplome=d.dno and e.eno=fe.eno and d.lib= :lib ;")
+	@RegisterMapper(ListeFormMapper.class)
+	List<ListeFormation> getFormetablByDiplome(@Bind("lib") String diplome);
 	
 	/*
 	@SqlQuery("")
