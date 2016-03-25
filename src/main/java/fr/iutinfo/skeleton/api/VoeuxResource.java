@@ -4,6 +4,8 @@ import fr.iutinfo.skeleton.auth.AuthFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
@@ -29,12 +31,13 @@ public class VoeuxResource {
 
 	private static VoeuxDao dao = BDDFactory.getDbi().open(VoeuxDao.class);
 	final static Logger logger = LoggerFactory.getLogger(SecureResource.class);
+	Gson gson = new Gson();
 
 	@GET
 	@Path("{login}")
 	public Response getVoeux(@PathParam("login") String login) {
 		List<Voeu> reponse = dao.getVoeuxByLogin(login);
-		return Response.status(200).entity(reponse.toString()).build();
+		return Response.status(200).entity(gson.toJson(reponse)).build();
 
 	}
 

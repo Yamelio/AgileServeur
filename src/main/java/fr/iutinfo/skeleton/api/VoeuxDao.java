@@ -15,13 +15,14 @@ public interface VoeuxDao {
 	@RegisterMapper(VoeuMapper.class)
 	List<Voeu>getVoeuxByLogin(@Bind("login") String login);
 	
+	
+	@SqlUpdate("insert into voeux values(':login',:feno);")
+	void addVoeuTo(String login,@BindVoeu() Voeu voeu);
+	
 	/*
 	@SqlQuery("")
-	boolean addVoeuTo(String login,Voeu voeu);
-	
-	@SqlQuery("")
 	@RegisterMapper(VoeuMapper.class)
-	Voeu removeVoeuTo(String login,Voeu voeu);
+	void removeVoeuTo(String login,Voeu voeu);
 	*/
 	
 	void close();

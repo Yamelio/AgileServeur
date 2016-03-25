@@ -4,6 +4,7 @@ public class FormaEtabl {
 
 	private int formaId;
 	private int etaId;
+	private int feno;
 	private String domaine;
 	private String diplome;
 	private String ville;
@@ -51,6 +52,10 @@ public class FormaEtabl {
 	public String toString() {
 		return "FormaEtabl [formaId=" + formaId + ", etaId=" + etaId + ", domaine=" + domaine + ", diplome=" + diplome
 				+ ", ville=" + ville + ", nom=" + nom + "]";
+	}
+
+	public int getFeno() {
+		return this.feno;
 	}
 	
 	
