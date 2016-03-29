@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -25,12 +26,6 @@ public class FormationResource {
 	final static Logger logger = LoggerFactory.getLogger(SecureResource.class);
 	Gson gson = new Gson();
 
-	@GET
-	@Path("/diplome")
-	public Response getDiplomes() {
-		List<Diplome> reponse = dao.getDiplomes();
-		return Response.status(200).entity(gson.toJson(reponse)).build();
-	}
 
 	@GET
 	public Response getFormetablByDiplome(@QueryParam("lib") String lib) {
@@ -38,12 +33,32 @@ public class FormationResource {
 		return Response.status(200).entity(gson.toJson(res)).build();
 	}
 	
+	@PUT
+	public Response addFormEtabl(@QueryParam("fno")int fno,@QueryParam("eno") int eno){
+		dao.addFormEtabl(fno,eno);
+		return Response.status(200).entity("OK").build();
+	}
+	
+
+	@GET
+	@Path("/diplome")
+	public Response getDiplomes() {
+		List<Diplome> reponse = dao.getDiplomes();
+		return Response.status(200).entity(gson.toJson(reponse)).build();
+	}
 	
 	@GET
 	@Path("/domaine")
 	public Response getDomaineByDiplome(@QueryParam("lib") String lib) {
 		List<Formation> res=dao.getDomaineByDiplome(lib);
 		return Response.status(200).entity(gson.toJson(res)).build();
+	}
+	
+	@PUT
+	@Path("/domaine")
+	public Response addDomaineByDiplome(@QueryParam("lib") String lib, @QueryParam("domaine")String domaine) {
+		dao.addDomaineByDiplome(lib,domaine);
+		return Response.status(200).entity("Ok").build();
 	}
 	/*
 	 * @DELETE public Voeu removeVoeuTo(String login,Voeu voeu) { return

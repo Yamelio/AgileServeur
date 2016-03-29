@@ -52,7 +52,7 @@
     dataType : "json",
 
     success: function( json ) {
-      var dom;
+      var dom = "<OPTION -</OPTION>";
        for(var i in json){
         dom+="<OPTION id="+json[i].fno+">"+json[i].domaine+"</OPTION>";
       }
@@ -76,18 +76,21 @@
   }
   /* Ajoute le domaine dans la base */
  function ajoutDomaine() {
-    var diplome = $('#diplome');
+    var diplome = $('#diplome').val();
+    var domaine = $('#new_domaine').val();
+   
     $.ajax({
-    url: api+"formation/domaine/?diplome="+diplome,
+    url: api+"formation/domaine?domaine="+domaine+"&lib="+diplome,
     type: "PUT",
     dataType : "json",
 
     success: function( json ) {
      console.log("Domaine ajouté");
+        
     },
           
     error: function( xhr, status, errorThrown ) {
-        alert( "Sorry, there was a problem!" );
+        //alert( "Sorry, there was a problem!" );
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
         console.dir( xhr );
@@ -97,6 +100,10 @@
         //alert( "The request is complete!" );
     }
     });
+     $('#new_ecole_2').trigger('click');
+
+    $('#new_formation_2').trigger('click');
+ 
   }
 
   /* Ajoute un champ si "Autre" sélectionné */
@@ -181,7 +188,7 @@ $(document).ready(function() {
     },
     
     error: function( xhr, status, errorThrown ) {
-        alert( "Sorry, there was a problem!" );
+       // alert( "Sorry, there was a problem!" );
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
         console.dir( xhr );
@@ -208,7 +215,7 @@ $(document).ready(function() {
     },
     
     error: function( xhr, status, errorThrown ) {
-        alert( "Sorry, there was a problem!" );
+      //  alert( "Sorry, there was a problem!" );
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
         console.dir( xhr );
@@ -314,7 +321,7 @@ $(document).ready(function() {
     },
     
     error: function( xhr, status, errorThrown ) {
-        alert( "Sorry, there was a problem!" );
+       // alert( "Sorry, there was a problem!" );
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
         console.dir( xhr );
@@ -374,7 +381,7 @@ $(document).ready(function() {
     },
     
     error: function( xhr, status, errorThrown ) {
-        alert( "Sorry, there was a problem!" );
+        //alert( "Sorry, there was a problem!" );
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
         console.dir( xhr );
@@ -401,7 +408,7 @@ $('#add_ecole').click(function (event) {
     },
     
     error: function( xhr, status, errorThrown ) {
-        alert( "Sorry, there was a problem!" );
+       // alert( "Sorry, there was a problem!" );
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
         console.dir( xhr );
@@ -415,7 +422,34 @@ $('#add_ecole').click(function (event) {
       
   });
 
+$('#add_forma').click(function (event) {
+    var eno = ecole.options[ecole.selectedIndex].id;
+    var fno = domaine.options[domaine.selectedIndex].id;
 
+   $.ajax({
+    url: api+"formation?eno="+eno+"&fno="+fno,
+    type: "PUT",
+    contentType: "application/json",
+    dataType : "json",
+
+    success: function( json ) {    
+      console.log("Formation ajoutée");
+    },
+    
+    error: function( xhr, status, errorThrown ) {
+       // alert( "Sorry, there was a problem!" );
+        console.log( "Error: " + errorThrown );
+        console.log( "Status: " + status );
+        console.dir( xhr );
+    },
+    // Code to run regardless of success or failure
+    complete: function( xhr, status ) {
+        console.log( "The request is complete!" );
+    }
+
+  });
+      
+  });
 }); // end document.ready
     </script>
 
@@ -430,7 +464,7 @@ $('#add_ecole').click(function (event) {
       <h1> Gestion d'etudiants </h1>
 
       <input id='faire_1' type='button' class="btn" name = 'submit' value="Lister etudiants">
-      <input id='etudiants_1' type='button' class="btn" name = 'submit' value="tableaux">
+      <input id='etudiants_1' type='button' class="btn" name = 'submit' value="Tableau des voeux">
     
       <input id='new_ecole' type='button' class="btn" name = 'submit' value="Ajouter école">
       <input id='new_formation' type='button' class="btn" name = 'submit' value="Ajouter formation">
@@ -504,7 +538,7 @@ $('#add_ecole').click(function (event) {
            
 
           </br>
-            <input id="add_ecole" type="button" value="Enregistrer">
+            <input id="add_forma" type="button" value="Enregistrer">
         </form>
       </div> 
 

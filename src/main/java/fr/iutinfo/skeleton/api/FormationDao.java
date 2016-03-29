@@ -22,6 +22,9 @@ public interface FormationDao {
     @RegisterMapper(FormationMapper.class)
 	List<Formation> getDomaineByDiplome(@Bind("lib") String lib);
 
+	@SqlUpdate("insert into formation (domaine,diplome) values(:domaine,(select dno from diplome where lib=:lib));")
+	void addDomaineByDiplome(@Bind("lib") String lib, @Bind("domaine") String domaine);
+	
 	/*
 	@SqlQuery("")
 	@RegisterMapper(VoeuMapper.class)
@@ -29,6 +32,11 @@ public interface FormationDao {
 	*/
 	
 	void close();
+
+	@SqlUpdate("insert into formEtabl (fno,eno) values (:fno,:eno);")
+	void addFormEtabl(@Bind("fno")int fno,@Bind("eno") int eno);
+
+	
 
 
 }
