@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -44,6 +45,13 @@ public class FormationResource {
 	public Response getDomaineByDiplome(@QueryParam("lib") String lib) {
 		List<Formation> res=dao.getDomaineByDiplome(lib);
 		return Response.status(200).entity(gson.toJson(res)).build();
+	}
+	
+	@PUT
+	@Path("/domaine")
+	public Response addDomaineByDiplome(@QueryParam("lib") String lib, @QueryParam("domaine")String domaine) {
+		dao.addDomaineByDiplome(lib,domaine);
+		return Response.status(200).entity("Ok").build();
 	}
 	/*
 	 * @DELETE public Voeu removeVoeuTo(String login,Voeu voeu) { return
