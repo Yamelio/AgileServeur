@@ -397,6 +397,7 @@ $(document).ready(function() {
 $('#add_ecole').click(function (event) {
     var ecole = $('#name_ecole').val();
     var ville = $('#ville_ecole').val();
+    var msg =$('<p> Ecole ajoutée </p>');
 
    $.ajax({
     url: api+"etablissement?nom="+ecole+"&ville="+ville,
@@ -405,9 +406,13 @@ $('#add_ecole').click(function (event) {
 
     success: function( json ) {    
       console.log("Ecole ajoutée");
+      msg.appendTo('#verif2');
+
     },
     
     error: function( xhr, status, errorThrown ) {
+        msg.appendTo('#verif2');
+
        // alert( "Sorry, there was a problem!" );
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
@@ -417,7 +422,6 @@ $('#add_ecole').click(function (event) {
     complete: function( xhr, status ) {
         console.log( "The request is complete!" );
     }
-
   });
       
   });
@@ -425,6 +429,7 @@ $('#add_ecole').click(function (event) {
 $('#add_forma').click(function (event) {
     var eno = ecole.options[ecole.selectedIndex].id;
     var fno = domaine.options[domaine.selectedIndex].id;
+    var msg =$('<p> Formation ajoutée </p>');
 
    $.ajax({
     url: api+"formation?eno="+eno+"&fno="+fno,
@@ -434,9 +439,13 @@ $('#add_forma').click(function (event) {
 
     success: function( json ) {    
       console.log("Formation ajoutée");
+            msg.appendTo('#verif');
+
     },
     
     error: function( xhr, status, errorThrown ) {
+            msg.appendTo('#verif');
+
        // alert( "Sorry, there was a problem!" );
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
@@ -515,7 +524,8 @@ $('#add_forma').click(function (event) {
             <input id="add_ecole" type="button" value="Enregistrer">
         </form>
       </div>  
- 
+      <div id="verif">
+      </div>  
       <div id="formforma">
         <form action="">
           </br>
@@ -539,6 +549,8 @@ $('#add_forma').click(function (event) {
 
           </br>
             <input id="add_forma" type="button" value="Enregistrer">
+             <div id="verif2">
+      </div>  
         </form>
       </div> 
 
