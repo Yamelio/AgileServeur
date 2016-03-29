@@ -102,7 +102,7 @@ $(document).ready(function() {
          $('#mes_formation').hide();
           $('#choix_formation').show();
           $('#type_form').show();
-
+          $('#faire_1').trigger('click');
 
      });
 
@@ -158,7 +158,7 @@ $(document).ready(function() {
     dataType : "json",
 
     success: function( json ) {
-      var option="";
+      var option="<OPTION> - </OPTION>";
       for(var i in json){
         option+="<OPTION>"+json[i].lib+"</OPTION>";
       }
