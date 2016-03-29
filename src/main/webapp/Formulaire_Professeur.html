@@ -99,23 +99,25 @@ $(document).ready(function() {
     url: api+"etudiant",
     type: "GET",
     dataType : "json",
-
+    async: false,
     success: function( json ) {
       var liste="";
 
       for(var i in json){
-        liste+="<li class=\"list-group-item\">"+json[i].nom+ " " +json[i].prenom+" - " + json[i].login+"</li>";
+        liste+="<li class=\"list-group-item list-group-item-info\">"+json[i].nom+ " " +json[i].prenom+" - " + json[i].login+"</li>";
 	liste+="<ol>";
-		/*    $.ajax({
-		    url: api+"voeux/"+login,
+		    $.ajax({
+		    url: api+"voeux/"+json[i].login,
 		    type: "GET",
 		    dataType : "json",
-
+	            async: false,
 		    success: function( json2 ) {
-		      var liste="";
 
-		      for(var i in json2){
-			liste+="<li class=\"list-group-item\">"+json2[i].formaEtabl.feno+</li>";
+
+
+		      for(var j in json2){
+			console.log(json2[j].formaEtabl.feno);
+			liste+="<li class=\"list-group-item\"> diplome : "+json2[j].formaEtabl.diplome+" - "+ json2[j].formaEtabl.nom+ "  "+json2[j].formaEtabl.ville +"</li>";
 		
 		      }
 		    
@@ -131,11 +133,11 @@ $(document).ready(function() {
 		    // Code to run regardless of success or failure
 		    complete: function( xhr, status ) {
 			console.log( "The request is complete!" );
+  			  document.getElementById("liste").innerHTML = liste;
 		    }
 		  });
-	*/
+	
       liste+="</ol>";
-
 		
       }
       //console.log(liste);
@@ -151,7 +153,7 @@ $(document).ready(function() {
     },
     // Code to run regardless of success or failure
     complete: function( xhr, status ) {
-        alert( "The request is complete!" );
+        console.log( "The request is complete!" );
     }
   });
       
