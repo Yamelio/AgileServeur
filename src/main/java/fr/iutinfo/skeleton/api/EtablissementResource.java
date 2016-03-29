@@ -27,9 +27,8 @@ public class EtablissementResource {
 
 	@PUT
 	public Response addEtablissement(@QueryParam("nom") String nom, @QueryParam("ville") String ville) {
-		logger.debug("Coucou");
 		dao.addEtablissement(nom, ville);
-		return Response.status(200).entity("Ok").build();
+		return Response.status(200).entity(gson.toJson(nom)).build();
 	}
 	
 	@GET
