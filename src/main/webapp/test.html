@@ -76,7 +76,7 @@
   }
   /* Ajoute le domaine dans la base */
  function ajoutDomaine() {
-    var diplome =$('#diplome');
+    var diplome = $('#diplome');
     $.ajax({
     url: api+"formation/domaine/?diplome="+diplome,
     type: "PUT",
@@ -84,10 +84,8 @@
 
     success: function( json ) {
      console.log("Domaine ajouté");
-    }
-      
     },
-    
+          
     error: function( xhr, status, errorThrown ) {
         alert( "Sorry, there was a problem!" );
         console.log( "Error: " + errorThrown );
