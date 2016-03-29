@@ -33,10 +33,10 @@ public interface FormationDao {
 	
 	void close();
 
-	@SqlUpdate("insert into formEtabl(fno,eno) select :fno,:eno"
+	@SqlUpdate("insert into formEtabl(fno,eno) select :fno,:eno "
 			+ "where not exists"
 			+ "(select eno,fno from formEtabl where eno=:eno and fno=:fno);")
-	void addFormEtabl(@Bind("fno")int fno,@Bind("eno") int eno);
+	void addFormEtabl(@Bind("fno")int fno, @Bind("eno") int eno);
 
 	
 

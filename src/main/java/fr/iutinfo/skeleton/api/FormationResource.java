@@ -34,7 +34,7 @@ public class FormationResource {
 	}
 	
 	@PUT
-	public Response addFormEtabl(@QueryParam("fno")int fno,@QueryParam("eno") int eno){
+	public Response addFormEtabl(@QueryParam("fno")int fno,@QueryParam("eno")int eno){
 		dao.addFormEtabl(fno,eno);
 		return Response.status(200).entity("OK").build();
 	}
