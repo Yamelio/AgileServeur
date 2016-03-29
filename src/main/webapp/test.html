@@ -52,7 +52,7 @@
     dataType : "json",
 
     success: function( json ) {
-      var dom;
+      var dom = "<OPTION -</OPTION>";
        for(var i in json){
         dom+="<OPTION id="+json[i].fno+">"+json[i].domaine+"</OPTION>";
       }
