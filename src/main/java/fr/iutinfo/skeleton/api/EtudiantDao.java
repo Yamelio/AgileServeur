@@ -11,7 +11,7 @@ import javax.ws.rs.QueryParam;
 public interface EtudiantDao {
 	
 	
-	@SqlQuery("select u.prenom,u.nom,u.login,CASE WHEN u.login in (select v1.login from voeux as v1) then (select count(*) from voeux as v2  where v2.login=u.login) else 0 end from utilisateur as u, type as t where u.type=t.tno and t.lib='etudiant' order by login asc;")
+	@SqlQuery("select u.prenom,u.nom,u.login,CASE WHEN u.login in (select v1.login from voeux as v1) then (select count(*) from voeux as v2  where v2.login=u.login) else 0 end from utilisateur as u, type as t where u.type=t.tno and t.lib='etudiant';")
 	@RegisterMapper(EtudiantMapper.class)
 	List<Etudiant>getEtudiants();
 	

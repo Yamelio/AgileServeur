@@ -2,7 +2,8 @@ package fr.iutinfo.skeleton.api;
 
 import org.skife.jdbi.v2.sqlobject.*;
 import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapper;
-
+import org.skife.jdbi.v2.sqlobject.customizers.RegisterMapperFactory;
+import org.skife.jdbi.v2.tweak.BeanMapperFactory;
 
 import java.util.List;
 public interface FormationDao {
@@ -17,6 +18,10 @@ public interface FormationDao {
 	@RegisterMapper(ListeFormMapper.class)
 	List<ListeFormation> getFormetablByDiplome(@Bind("lib") String diplome);
 	
+	@SqlQuery("select f.fno,f.domaine from formation as f,diplome as d where f.diplome=d.dno and d.lib=:lib;")
+    @RegisterMapper(FormationMapper.class)
+	List<Formation> getDomaineByDiplome(@Bind("lib") String lib);
+
 	/*
 	@SqlQuery("")
 	@RegisterMapper(VoeuMapper.class)
@@ -24,4 +29,6 @@ public interface FormationDao {
 	*/
 	
 	void close();
+
+
 }

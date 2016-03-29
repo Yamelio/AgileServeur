@@ -30,12 +30,19 @@ public class FormationResource {
 	public Response getDiplomes() {
 		List<Diplome> reponse = dao.getDiplomes();
 		return Response.status(200).entity(gson.toJson(reponse)).build();
-
 	}
 
 	@GET
 	public Response getFormetablByDiplome(@QueryParam("lib") String lib) {
 		List<ListeFormation> res = dao.getFormetablByDiplome(lib);
+		return Response.status(200).entity(gson.toJson(res)).build();
+	}
+	
+	
+	@GET
+	@Path("/domaine")
+	public Response getDomaineByDiplome(@QueryParam("lib") String lib) {
+		List<Formation> res=dao.getDomaineByDiplome(lib);
 		return Response.status(200).entity(gson.toJson(res)).build();
 	}
 	/*
