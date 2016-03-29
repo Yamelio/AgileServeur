@@ -16,10 +16,10 @@
     var dejafait = $("<i> Vous avez déjà ajouté cette formation </i>");
     var ajoutermsg = $("<i> Formation ajouté à votre liste </i>");
 
-function add_voeux(id) {
+function add_voeux(feno) {
     $.ajax({
       //SET content type
-    url: api+"voeux?login="+login+"&feno="+id,
+    url: api+"voeux?login="+login+"&feno="+feno,
     type: "PUT",
     contentType: "application/json",
     dataType : "json",
@@ -31,7 +31,35 @@ function add_voeux(id) {
     },
     
     error: function( xhr, status, errorThrown ){
+
+      //  alert( "Sorry, there was a problem!" );
+        console.log( "Error: " + errorThrown );
+        console.log( "Status: " + status );
+        console.dir( xhr );
+    },
+    // Code to run regardless of success or failure
+    complete: function( xhr, status ) {
+      //  alert( "The request is complete!" );
+    }
+  });
       
+  }
+
+  function delete_voeux(feno) {
+    console.log(feno);
+    $.ajax({
+      //SET content type
+    url: api+"voeux?login="+login+"&feno="+feno,
+    type: "DELETE",
+    dataType : "html",
+
+    success: function( json ) {
+    $('#faire_1').trigger('click');
+    $('#voeux_1').trigger('click');
+    },
+    
+    error: function( xhr, status, errorThrown ){
+
       //  alert( "Sorry, there was a problem!" );
         console.log( "Error: " + errorThrown );
         console.log( "Status: " + status );
@@ -95,7 +123,7 @@ $(document).ready(function() {
       var liste="";
 
       for(var i in json){
-        liste+="<li class=\"list-group-item\">"+json[i].formaEtabl.diplome+ " " +json[i].formaEtabl.domaine+" - " + json[i].formaEtabl.nom + " " +json[i].formaEtabl.ville+"</li>";
+        liste+="<li class=\"list-group-item\" >"+json[i].formaEtabl.diplome+ " " +json[i].formaEtabl.domaine+" - " + json[i].formaEtabl.nom + " " +json[i].formaEtabl.ville+" <input type=submit id="+json[i].formaEtabl.feno+" onclick = \"delete_voeux(this.id);\" value=\"Effacer\"></li>";
       }
       //console.log(liste);
     document.getElementById("liste").innerHTML = liste;
@@ -169,7 +197,6 @@ $(document).ready(function() {
       //Variable ctp pour l'affichage design une ligne sur 2
       var cpt = 0;
       for(var i in json){
-        console.log(json[i].feno);
         if(cpt%2 === 0){
            contenu+= "<tr class=\"info\"><td>"+json[i].ecole + "</td><td>"+diplome+" "+json[i].domaine + "</td><td>" + json[i].ville +"</td><td><input type=submit id="+json[i].feno+" onclick = \"add_voeux(this.id);\" value=\"Ajouter\"></td></tr>";
         }
