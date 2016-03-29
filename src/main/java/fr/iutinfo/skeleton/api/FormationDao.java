@@ -33,6 +33,9 @@ public interface FormationDao {
 	
 	void close();
 
+	@SqlUpdate("insert into formEtabl (fno,eno) values (:fno,:eno);")
+	void addFormEtabl(@Bind("fno")int fno,@Bind("eno") int eno);
+
 	
 
 

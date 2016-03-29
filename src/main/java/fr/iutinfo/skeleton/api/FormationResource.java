@@ -26,12 +26,6 @@ public class FormationResource {
 	final static Logger logger = LoggerFactory.getLogger(SecureResource.class);
 	Gson gson = new Gson();
 
-	@GET
-	@Path("/diplome")
-	public Response getDiplomes() {
-		List<Diplome> reponse = dao.getDiplomes();
-		return Response.status(200).entity(gson.toJson(reponse)).build();
-	}
 
 	@GET
 	public Response getFormetablByDiplome(@QueryParam("lib") String lib) {
@@ -39,6 +33,19 @@ public class FormationResource {
 		return Response.status(200).entity(gson.toJson(res)).build();
 	}
 	
+	@PUT
+	public Response addFormEtabl(@QueryParam("fno")int fno,@QueryParam("eno") int eno){
+		dao.addFormEtabl(fno,eno);
+		return Response.status(200).entity("OK").build();
+	}
+	
+
+	@GET
+	@Path("/diplome")
+	public Response getDiplomes() {
+		List<Diplome> reponse = dao.getDiplomes();
+		return Response.status(200).entity(gson.toJson(reponse)).build();
+	}
 	
 	@GET
 	@Path("/domaine")
