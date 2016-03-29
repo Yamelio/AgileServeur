@@ -58,6 +58,10 @@ public class FormaEtabl {
 		return this.feno;
 	}
 	
+	public void setFeno(int feno) {
+		this.feno=feno;
+	}
+	
 	
 	
 }

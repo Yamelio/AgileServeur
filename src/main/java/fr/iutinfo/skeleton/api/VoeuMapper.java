@@ -25,6 +25,7 @@ public class VoeuMapper implements ResultSetMapper<Voeu>
 		fe.setFormaId(r.getInt("fno"));
 		fe.setNom(r.getString("etablissement")); //de l'établissement
 		fe.setVille(r.getString("ville"));
+		fe.setFeno(r.getInt("feno"));
 		
 		
 		res.setFormaEtabl(fe);
