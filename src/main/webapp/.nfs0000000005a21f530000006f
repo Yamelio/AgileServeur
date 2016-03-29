@@ -145,7 +145,7 @@ $(document).ready(function() {
           $('#formecole').hide();
           $('#type_form').hide();
           $('#formforma').hide(); 
-          $('#liste').show(); 
+
      });
 
     $('#new_ecole').click(function (event) {
@@ -238,12 +238,10 @@ $(document).ready(function() {
           $('#formforma').hide(); 
 
      });
- $('#etudiants_2').click(function (event) {
-          $('#liste').show(); 
+
+    $('#etudiants_2').click(function (event) {
           $('#choix_formation').hide();
           $('#mes_formation').show();
-          $('#formecole').hide();
-          $('#type_form').hide();
           $('#formforma').hide(); 
 
      });
@@ -427,7 +425,7 @@ $('#add_ecole').click(function (event) {
   <center>
 
     <div id="choix_formation"/>
-      <h1> Gestion d'etudiants </h1>
+      <h1> Gestion Etudiant </h1>
 
       <input id='faire_1' type='button' class="btn" name = 'submit' value="Lister etudiants">
       <input id='etudiants_1' type='button' class="btn" name = 'submit' value="tableaux">

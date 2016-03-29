@@ -427,7 +427,7 @@ $('#add_ecole').click(function (event) {
   <center>
 
     <div id="choix_formation"/>
-      <h1> Gestion d'etudiants </h1>
+      <h1> Gestion Etudiant </h1>
 
       <input id='faire_1' type='button' class="btn" name = 'submit' value="Lister etudiants">
       <input id='etudiants_1' type='button' class="btn" name = 'submit' value="tableaux">
