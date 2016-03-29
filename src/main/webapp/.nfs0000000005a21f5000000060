@@ -104,7 +104,7 @@ $(document).ready(function() {
       var liste="";
 
       for(var i in json){
-        liste+="<li class=\"list-group-item list-group-item-info\">"+json[i].nom+ " " +json[i].prenom+" - " + json[i].login+"</li>";
+        liste+="<li class=\"info\">"+json[i].nom+ " " +json[i].prenom+" - " + json[i].login+"</li>";
 	liste+="<ol>";
 		    $.ajax({
 		    url: api+"voeux/"+json[i].login,
@@ -117,7 +117,7 @@ $(document).ready(function() {
 
 		      for(var j in json2){
 			console.log(json2[j].formaEtabl.feno);
-			liste+="<li class=\"list-group-item-\"> diplome : "+json2[j].formaEtabl.diplome+" - "+ json2[j].formaEtabl.nom+ "  "+json2[j].formaEtabl.ville +"</li>";
+			liste+="<li class=\"list-group-item-heading\"> diplome : "+json2[j].formaEtabl.diplome+" - "+ json2[j].formaEtabl.nom+ "  "+json2[j].formaEtabl.ville +"</li>";
 		
 		      }
 		    

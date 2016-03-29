@@ -99,46 +99,12 @@ $(document).ready(function() {
     url: api+"etudiant",
     type: "GET",
     dataType : "json",
-    async: false,
+
     success: function( json ) {
       var liste="";
 
       for(var i in json){
-        liste+="<li class=\"list-group-item list-group-item-info\">"+json[i].nom+ " " +json[i].prenom+" - " + json[i].login+"</li>";
-	liste+="<ol>";
-		    $.ajax({
-		    url: api+"voeux/"+json[i].login,
-		    type: "GET",
-		    dataType : "json",
-	            async: false,
-		    success: function( json2 ) {
-
-
-
-		      for(var j in json2){
-			console.log(json2[j].formaEtabl.feno);
-			liste+="<li class=\"list-group-item-\"> diplome : "+json2[j].formaEtabl.diplome+" - "+ json2[j].formaEtabl.nom+ "  "+json2[j].formaEtabl.ville +"</li>";
-		
-		      }
-		    
-		      
-		    },
-		    
-		    error: function( xhr, status, errorThrown ) {
-			alert( "Sorry, there was a problem!" );
-			console.log( "Error: " + errorThrown );
-			console.log( "Status: " + status );
-			console.dir( xhr );
-		    },
-		    // Code to run regardless of success or failure
-		    complete: function( xhr, status ) {
-			console.log( "The request is complete!" );
-  			  document.getElementById("liste").innerHTML = liste;
-		    }
-		  });
-	
-      liste+="</ol>";
-		
+        liste+="<li class=\"list-group-item\">"+json[i].nom+ " " +json[i].prenom+" - " + json[i].login+"</li>";
       }
       //console.log(liste);
     document.getElementById("liste").innerHTML = liste;
@@ -153,7 +119,7 @@ $(document).ready(function() {
     },
     // Code to run regardless of success or failure
     complete: function( xhr, status ) {
-        console.log( "The request is complete!" );
+        alert( "The request is complete!" );
     }
   });
       
@@ -171,21 +137,13 @@ $(document).ready(function() {
 
 
           function sortByVoeux(key1, key2){  
-      		 return key1.hasVoeu > key2.hasVoeu;  
+      		 return key2.hasVoeu > key1.hasVoeu;  
   	  }  
           function sortByName(key1, key2){  
       		 return key1.nom > key2.nom;  
   	  }  
-
-      if(tri === "Alphabetique"){
-	      json.sort(sortByName);
-	      console.log("alpha");
-	}
-      else if (tri ==="Voeux"){
-		
-              json.sort(sortByVoeux);
-      	      console.log("voeux");
-	}
+      json.sort(sortByName);
+      console.log(json); 
 	
       contenu =  "<table class=\"table table-striped\"><thead><tr><th>Nom</th><th>Prenom</th><th>Login</th><th>Voeux</th></tr></thead><tbody>";
       var cpt = 0;
