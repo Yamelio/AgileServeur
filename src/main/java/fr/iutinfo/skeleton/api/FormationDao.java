@@ -38,6 +38,10 @@ public interface FormationDao {
 			+ "(select eno,fno from formEtabl where eno=:eno and fno=:fno);")
 	void addFormEtabl(@Bind("fno")int fno, @Bind("eno") int eno);
 
+
+	@SqlUpdate("delete from formEtabl where login=:login and feno=:feno")
+	void removeFormEtabl(@Bind("login")String login, @Bind("feno")int feno);
+
 	
 
 
