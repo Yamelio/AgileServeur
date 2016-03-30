@@ -43,7 +43,7 @@ public interface FormationDao {
 	void addFormEtabl(@Bind("fno")int fno, @Bind("eno") int eno);
 
 
-	@SqlUpdate("delete from formEtabl where and feno=:feno")
+	@SqlUpdate("delete from formEtabl where feno=:feno")
 	void removeFormEtabl(@Bind("feno")int feno);
 
 	void close();
