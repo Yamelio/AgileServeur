@@ -1,0 +1,27 @@
+
+.full_container{
+    width:100%;
+    height:300px;
+    border:0px solid green;
+    background-image:url("http://image.noelshack.com/fichiers/2016/13/1459329243-bg.jpg");
+    background-size:100% auto;
+    background-position:0% 80%;
+}
+.content_container{
+    width:70%;
+    height:auto;
+    border:1px solid lightgrey;
+    text-align:left;
+    padding:20px;
+    margin:20px;   
+}
+.footer{
+    margin-bottom:0px;
+    border-top:1px solid lightgrey;
+    width:100%;
+    height:100px;
+}
+
+
+
+

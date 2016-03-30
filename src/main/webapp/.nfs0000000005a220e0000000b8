@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	
+	<meta charset="UTF-8" />
+	<title>Post IUT</title>
+
+	<!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+	<style>
+
+	.full_container{
+	    width:100%;
+	    height:300px;
+	    border:0px solid green;
+	    background-image:url("http://image.noelshack.com/fichiers/2016/13/1459329243-bg.jpg");
+	    background-size:100% auto;
+	    background-position:0% 80%;
+	}
+	.content_container{
+	    width:70%;
+	    height:auto;
+	    border:1px solid lightgrey;
+	    text-align:left;
+	    padding:20px;
+	    margin:20px;   
+	}
+	.footer{
+	    margin-bottom:0px;
+	    border-top:1px solid lightgrey;
+	    width:100%;
+	    height:100px;
+	}
+
+
+
+
+	</style>
+</head>
+
+
+<body>
+
+
+	<div class="full_container">
+
+	</div>
+
+
+    <!--copy the nav to the other pages-->
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	  	<div class="navbar-header">
+	  		<a class="navbar-brand" href="#">
+		     IUT A 
+		    </a>
+	  	</div>
+
+	  	
+	    <p class="navbar-text navbar-left"><a href="Index.html" class="navbar-link">Accueil</a></p>
+	    <p class="navbar-text navbar-left"><a href="login.html" class="navbar-link">Consulter son dossier</a></p>
+	    <p class="navbar-text navbar-left"><a href="#" class="navbar-link">Foire aux questions</a></p>
+	    <p class="navbar-text navbar-right"><a href="#" class="navbar-link">Contact</a></p>
+	  </div>
+	</nav>
+    <!---->
+
+        <div id="content" class="content_container">
+            <h1>Poursuite D'Etudes</h1>
+            <p>Bienvenue sur le site de poursuite d'études de l'IUT A de Villeneuve d'Ascq.</p>
+            <p class="last">Ici, vous pourrez consulter votre dossier étudiant, après identification, et accéder à l'ensemble des formations ajoutées par vos enseignants.
+            	Ce site a ete devellope par des etudiants dans le cadre d'un projet d'etudes. 
+            </p>
+            <br>
+            <h3>Faites vos voeux, ils feront leurs choix !</h3>
+            <p>Vous avez la possibilité de gérer une liste de voeux de formations qui vous est personelle.</p>
+            <p class="last">Vos professeurs auront accés à cette liste, et pourront exprimer leur avis (positif / négatif) sur votre orientation. 
+            </p>
+        </div>
+
+        <div id="content" class="content_container">
+            <p> loremipsum </p>
+        </div>
+
+    </center>
+
+    <!--And the footer too-->
+	<footer class="footer">
+      	<center>
+            <table class="table">
+            	<tr>
+            		<td> <h1>Developpé par Omar Al yasini - Adrien Philippaux - Guillaume Kleinpoort - Samantha N'Goutane - Simon Defretin - Clement Dussart - Benjamin Deregnaucourt</h1>
+                        <p> Une equipe de la promotion 2014-2016</p>
+            		</td>
+            		<td>
+            			<center>
+            			<p> Dans le cadre du Projet Agile - Mars 2016</p>
+            			</center>
+
+            		</td>
+            		<td>
+            			<img src="http://image.noelshack.com/fichiers/2016/13/1459329242-logo.jpg" style="width:100px;float:right"> </img>
+            		</td>
+            	</tr>
+            </table>
+        </center>
+    </footer>
+    <!---->
+</body>
+</html>

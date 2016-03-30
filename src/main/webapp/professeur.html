@@ -334,12 +334,14 @@ $(document).ready(function() {
     url: api+"etudiant",
     type: "GET",
     dataType : "json",
-    async: false,
+   // async: false,
     success: function( json ) {
       var liste="";
-
+	
       for(var i in json){
-        liste+="<li class=\"list-group-item list-group-item-info\">"+json[i].nom+ " " +json[i].prenom+" - " + json[i].login+"</li>";
+	if(json[i].hasVoeu != 0){
+        	liste+="<li class=\"list-group-item list-group-item-info\">"+json[i].nom+ " " +json[i].prenom+" - " + json[i].login+"</li>";
+	}
 	liste+="<ol>";
 		    $.ajax({
 		    url: api+"voeux/"+json[i].login,
@@ -347,7 +349,7 @@ $(document).ready(function() {
 		    dataType : "json",
 	            async: false,
 		    success: function( json2 ) {
-
+			
 
 
 		      for(var j in json2){
@@ -368,13 +370,19 @@ $(document).ready(function() {
 		    // Code to run regardless of success or failure
 		    complete: function( xhr, status ) {
 			console.log( "The request is complete!" );
-  			  document.getElementById("liste").innerHTML = liste;
 		    }
 		  });
 	
       liste+="</ol>";
 		
       }
+
+      for(var i in json){
+	if(json[i].hasVoeu === 0){
+        	liste+="<li class=\"list-group-item list-group-item-danger\">"+json[i].nom+ " " +json[i].prenom+" - " + json[i].login+"</li>";
+	
+	}
+    }
       //console.log(liste);
     document.getElementById("liste").innerHTML = liste;
       
@@ -581,10 +589,6 @@ $('#add_forma').click(function (event) {
              <OPTION>Alphabetique</OPTION>
              <OPTION>Voeux</OPTION>
 		
-             <OPTION>Rang </OPTION>
-             <OPTION>Rang (S1)</OPTION>
-             <OPTION>Rang (S2)</OPTION>
-             <OPTION>Rang (S3)</OPTION>
             </SELECT>
             <input id='ok_type' type='button' class="btn" name = 'submit' value="OK">
           </div>
@@ -598,7 +602,7 @@ $('#add_forma').click(function (event) {
 
     <div id="mes_formation"/>
       <h1> Gestion des étudiants </h1>
-      <input id='faire_2' type='button' class="btn" name = 'submit' value="Lister etudiant">
+      <input id='faire_2' type='button' class="btn" name = 'submit' value="Lister etudiants">
       <input id='etudiants_2' type='button' class="btn" name = 'submit' value="Tableau des voeux">
       <input id='liste_forma_2' type='button' class="btn" name = 'submit' value="Lister les formations">
       <input id='new_ecole_2' type='button' class="btn" name = 'submit' value="Ajouter école">

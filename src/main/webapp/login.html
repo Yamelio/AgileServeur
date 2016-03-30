@@ -1,18 +1,61 @@
 <html>
 	<head>
-	<title>Connexion</title>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<title>Connexion</title>   
+
     <meta charset="UTF-8"/>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src='js/jquery-2.1.3.js'></script>
+<style>
+
+	.full_container{
+	    width:100%;
+	    height:300px;
+	    border:0px solid green;
+	    background-image:url("http://image.noelshack.com/fichiers/2016/13/1459329243-bg.jpg");
+	    background-size:100% auto;
+	    background-position:0% 80%;
+	}
+	.content_container{
+	    width:70%;
+	    height:auto;
+	    border:1px solid lightgrey;
+	    text-align:left;
+	    padding:20px;
+	    margin:20px;   
+	}
+	.footer{
+	    margin-bottom:0px;
+	    border-top:1px solid lightgrey;
+	    width:100%;
+	    height:100px;
+	}
+
+
+
+
+	</style>
 </head>
 <body>
 
-</br>
-</br>
+<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	  	<div class="navbar-header">
+	  		<a class="navbar-brand" href="#">
+		     IUT A 
+		    </a>
+	  	</div>
 
-</br>
-
-
+	  	
+	    <p class="navbar-text navbar-left"><a href="Index.html" class="navbar-link">Accueil</a></p>
+	    <p class="navbar-text navbar-left"><a href="login.html" class="navbar-link">Consulter son dossier</a></p>
+	    <p class="navbar-text navbar-left"><a href="#" class="navbar-link">Foire aux questions</a></p>
+	    <p class="navbar-text navbar-right"><a href="#" class="navbar-link">Contact</a></p>
+	  </div>
+	</nav>
+<center>
+<div class="content_container">
 <form class="form-horizontal" role="form">
   <div class="form-group">
     <label class="control-label col-sm-2" for="login">Login:</label>
@@ -29,10 +72,84 @@
  
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Connexion</button>
+	<input type="button" value="Login" id="submit" onclick="validate()"/>
     </div>
   </div>
 </form>
+</div>
+</center>
+<footer class="footer">
+      	<center>
+            <table class="table">
+            	<tr>
+            		<td> <h4>Developpé par...</h4>
+                        <p> Une equipe de la promotion 2014-2016</p>
+            		</td>
+            		<td>
+            			<center>
+            			<p> Dans le cadre du Projet Agile - Mars 2016</p>
+            			</center>
 
+            		</td>
+            		<td>
+            			<img src="http://image.noelshack.com/fichiers/2016/13/1459329242-logo.jpg" style="width:100px;float:right"> </img>
+            		</td>
+            	</tr>
+            </table>
+        </center>
+    </footer>
 </body>
+ 
+  <script>
+
+   	var api="http://localhost:8080/micheline/";
+
+	var attempt = 3; // Variable to count number of attempts.
+	// Below function Executes on click of login button.
+	function validate(){
+	var username = document.getElementById("login").value;
+	var password = document.getElementById("pwd").value;
+	var success ;
+	console.log(username);
+	console.log(password);
+	 $.ajax({
+   		   url: api+"login?login="+username+"&password="+password,
+ 		   type: "GET",
+ 		   dataType : "json",
+
+		   success: function( json ) {
+			console.log(json);
+			success=json+"";	
+		   if ( success==="1"){
+		   alert ("Login successfully");
+		   window.location = "professeur.html?login="+username; // Redirecting to other page.
+	
+		}
+		else if ( success==="2"){
+		   alert ("Login successfully");
+		   window.location = "etudiant.html?login="+username; // Redirecting to other page.
+	
+		}
+		else{
+			alert("error");
+		}
+ 		   },
+    
+    error: function( xhr, status, errorThrown ){
+
+      //  alert( "Sorry, there was a problem!" );
+        console.log( "Error: " + errorThrown );
+        console.log( "Status: " + status );
+        console.dir( xhr );
+    },
+    // Code to run regardless of success or failure
+    complete: function( xhr, status ) {
+      //  alert( "The request is complete!" );
+    }
+  });
+	
+  }
+
+
+</script>
 </html>
