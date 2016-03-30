@@ -10,8 +10,7 @@
 
   <script>
     var api="http://localhost:8080/micheline/";
-    var url = window.location.search;
-    var login = url.substring(url.lastIndexOf("=")+1);
+    var login = "guillaume.kleinpoort";
     var bienvenue = $("<p>Connecté en tant que "+ login+"</p>");
     var voeux = "<ul class=\"list-group\">";
     var dejafait = $("<i> Vous avez déjà ajouté cette formation </i>");
@@ -73,11 +72,6 @@ function add_voeux(feno) {
   });
       
   }
-
-  function lister() {
-    document.getElementById("ok_type").click();
-  }
-
 $(document).ready(function() {
   // Mettre ici les gestionnaires d'évènements pour les différents boutons
   bienvenue.appendTo('#nom_user');
@@ -102,7 +96,7 @@ $(document).ready(function() {
          $('#mes_formation').hide();
           $('#choix_formation').show();
           $('#type_form').show();
-          $('#faire_1').trigger('click');
+
 
      });
 
@@ -115,7 +109,6 @@ $(document).ready(function() {
     // pour démarrer sur la page de choix
   //$('#faire_1').trigger('click');
   //$('#faire_2').trigger('click');
-  $('#ok_type').hide();
 
   
 
@@ -134,7 +127,7 @@ $(document).ready(function() {
       }
       //console.log(liste);
     document.getElementById("liste").innerHTML = liste;
-  
+      
     },
     
     error: function( xhr, status, errorThrown ) {
@@ -158,7 +151,7 @@ $(document).ready(function() {
     dataType : "json",
 
     success: function( json ) {
-      var option="<OPTION> - </OPTION>";
+      var option="";
       for(var i in json){
         option+="<OPTION>"+json[i].lib+"</OPTION>";
       }
@@ -253,7 +246,7 @@ $(document).ready(function() {
         <FORM>
           <div id="type_form">
             <label>Diplôme - </label>
-            <SELECT name="diplome" class="span2" id="diplome" size="1" onChange="lister()">
+            <SELECT name="diplome" class="span2" id="diplome" size="1">
              
             </SELECT>
             <input id='ok_type' type='button' class="btn" name = 'submit' value="OK">
@@ -263,9 +256,7 @@ $(document).ready(function() {
       </div>
 
       <div id="output"/> </div>
-      <div id="info">  
-
-      </div>
+      <div id="info"/> </div>
     </div>
 
     <div id="mes_formation"/>
@@ -275,7 +266,6 @@ $(document).ready(function() {
       <div id="liste">
 
       </div>  
-    
     </div>
 
   </center>

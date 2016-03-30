@@ -31,7 +31,11 @@ public class SecureResource {
         User currentUser = (User) context.getUserPrincipal();
         logger.debug("Current User :"+ currentUser.toString());
         if (User.isAnonymous(currentUser)) {
-            throw new WebApplicationException(Response.status(Response.Status.UNAUTHORIZED).header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Mon application\"").entity("Ressouce requires login.").build());
+            throw new WebApplicationException(
+            		Response
+            		.status(Response.Status.UNAUTHORIZED)
+            		.header(HttpHeaders.WWW_AUTHENTICATE, "Basic realm=\"Mon application\"")
+            		.entity("Ressouce requires login.").build());
         }
         return currentUser;
     }

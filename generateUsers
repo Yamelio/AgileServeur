@@ -1,0 +1,11 @@
+#!/bin/bash
+
+users=$(cat users)
+touch users.sql
+log=""
+for log in $users
+do
+  echo "insert into utilisateur(login,password,type) values('$log','$log',2);" >> users.sql
+done
+
+    

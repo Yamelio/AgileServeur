@@ -7,6 +7,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -24,8 +25,8 @@ public class LoginResource {
 	final static Logger logger = LoggerFactory.getLogger(SecureResource.class);
 	Gson gson = new Gson();
 
-	@POST
-	public Response checkLogin(@FormParam("login") String login,@FormParam("password")String password) {
+	@GET
+	public Response checkLogin(@QueryParam("login") String login,@QueryParam("password")String password) {
 		int reponse = dao.checkLogin(login,password);
 		logger.debug(login);
 		logger.debug(password);
