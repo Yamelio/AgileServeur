@@ -27,8 +27,14 @@ public class FormationResource {
 	Gson gson = new Gson();
 
 	@GET
-	public Response getFormetablByDiplome(@QueryParam("lib") String lib) {
-		List<ListeFormation> res = dao.getFormetablByDiplome(lib);
+	public Response getFormetabl(@QueryParam("lib") String lib) {
+		List res;
+		logger.debug(lib);
+		if (lib != null) {
+			res = dao.getFormetablByDiplome(lib);
+		} else {
+			res = dao.getFormetabl();
+		}
 		return Response.status(200).entity(gson.toJson(res)).build();
 	}
 
@@ -60,7 +66,7 @@ public class FormationResource {
 	}
 
 	@DELETE
-	public Response removeVoeuTo(@QueryParam("login")String login, @QueryParam("feno")int feno) {
+	public Response removeVoeuTo(@QueryParam("login") String login, @QueryParam("feno") int feno) {
 		dao.removeFormEtabl(login, feno);
 		return Response.status(200).entity("Ok").build();
 	}
