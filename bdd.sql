@@ -15,9 +15,9 @@ CREATE TABLE type(
 );
 
 CREATE TABLE diplome(
-	dno SERIAL,
+	dno serial,
 	lib TEXT,
-	CONSTRAINT pk_dno PRIMARY KEY(dno)
+	CONSTRAINT pk_lib PRIMARY KEY(dno)
 );
 
 INSERT INTO type (lib) VALUES('admin');
@@ -28,6 +28,7 @@ INSERT INTO type (lib) VALUES('jury');
 INSERT INTO diplome (lib) VALUES('Licence Pro');
 INSERT INTO diplome (lib) VALUES('Licence');
 INSERT INTO diplome (lib) VALUES('Ingenieur');
+INSERT INTO diplome (lib) VALUES('Autres');
 
 
 CREATE TABLE utilisateur(
@@ -49,7 +50,7 @@ INSERT INTO utilisateur (prenom,nom,login,password,type) VALUES('bbbb','bbbb','b
 CREATE TABLE formation(
 	fno SERIAL,
 	domaine TEXT,
-	diplome Integer,
+	diplome integer,
 	CONSTRAINT pk_fno PRIMARY KEY(fno),
 	CONSTRAINT fk_diplome FOREIGN KEY(diplome) REFERENCES diplome(dno)
 );
@@ -79,9 +80,9 @@ CREATE TABLE voeux (
 );
 
 --Select voeux par login
-select u.login,u.prenom,u.nom,t.lib,f.diplome,f.domaine,e.eno,f.fno,e.nom,e.ville
-from utilisateur as u,formation as f,etablissement as e, voeux as v, formEtabl as fe
-where u.login=v.login and v.feno=fe.feno and fe.fno=f.fno and fe.eno=e.eno and t.tno=u.type;
+--select u.login,u.prenom,u.nom,t.lib,f.diplome,f.domaine,e.eno,f.fno,e.nom,e.ville
+--from utilisateur as u,formation as f,etablissement as e, voeux as v, formEtabl as fe
+--where u.login=v.login and v.feno=fe.feno and fe.fno=f.fno and fe.eno=e.eno and t.tno=u.type;
 
 
 
