@@ -66,8 +66,8 @@ public class FormationResource {
 	}
 
 	@DELETE
-	public Response removeVoeuTo(@QueryParam("login") String login, @QueryParam("feno") int feno) {
-		dao.removeFormEtabl(login, feno);
+	public Response removeVoeuTo(@QueryParam("feno") int feno) {
+		dao.removeFormEtabl(feno);
 		return Response.status(200).entity("Ok").build();
 	}
 

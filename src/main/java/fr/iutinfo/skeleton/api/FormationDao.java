@@ -37,15 +37,14 @@ public interface FormationDao {
 	void removeVoeuTo(String login,Voeu voeu);
 	*/
 	
-	void close();
-
 	@SqlUpdate("insert into formEtabl(fno,eno) select :fno,:eno "
 			+ "where not exists"
 			+ "(select eno,fno from formEtabl where eno=:eno and fno=:fno);")
 	void addFormEtabl(@Bind("fno")int fno, @Bind("eno") int eno);
 
 
-	@SqlUpdate("delete from formEtabl where login=:login and feno=:feno")
-	void removeFormEtabl(@Bind("login")String login, @Bind("feno")int feno);
+	@SqlUpdate("delete from formEtabl where and feno=:feno")
+	void removeFormEtabl(@Bind("feno")int feno);
 
+	void close();
 }

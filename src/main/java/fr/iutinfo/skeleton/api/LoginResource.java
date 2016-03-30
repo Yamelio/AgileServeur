@@ -24,7 +24,7 @@ public class LoginResource {
 	final static Logger logger = LoggerFactory.getLogger(SecureResource.class);
 	Gson gson = new Gson();
 
-	@POST
+	@GET
 	public Response checkLogin(@FormParam("login") String login,@FormParam("password")String password) {
 		int reponse = dao.checkLogin(login,password);
 		logger.debug(login);
