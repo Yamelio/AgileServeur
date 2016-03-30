@@ -1,11 +1,8 @@
 package fr.iutinfo.skeleton.api;
 
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -22,15 +19,11 @@ import com.google.gson.Gson;
 public class LoginResource {
 
 	private static LoginDao dao = BDDFactory.getDbi().open(LoginDao.class);
-	final static Logger logger = LoggerFactory.getLogger(SecureResource.class);
 	Gson gson = new Gson();
 
 	@GET
 	public Response checkLogin(@QueryParam("login") String login,@QueryParam("password")String password) {
 		int reponse = dao.checkLogin(login,password);
-		logger.debug(login);
-		logger.debug(password);
-		logger.debug(""+reponse);
 		return Response.status(200).entity(gson.toJson(reponse)).build();
 
 	}
